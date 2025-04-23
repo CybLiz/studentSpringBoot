@@ -20,10 +20,23 @@ public class studentControler {
         this.studentService = studentService;
     }
 
-    @RequestMapping("/students")
+    @RequestMapping("/")
+    public String home() {
+        return "Accueil";
+    }
+
+    @RequestMapping("/inscription")
+    public String addStudent(Model model) {
+
+        model.addAttribute("student", new Student());
+        return "RegisterUserForm";
+    }
+
+
+    @RequestMapping("/etudiants")
     public String getAll(Model model) {
         model.addAttribute("students", studentService.getAllStudents());
-        return "Accueil";
+        return "Etudiants";
     }
 
 
@@ -31,7 +44,13 @@ public class studentControler {
     public String details(@PathVariable("studentId") UUID studentId, Model model) {
         Student student = studentService.getStudentById(studentId);
         model.addAttribute("student", student);
-        return "etudiant";
+        return "Etudiant";
+    }
+
+    @RequestMapping("/form")
+    public String form(Model model) {
+        model.addAttribute("student", new Student());
+        return "RegisterUserForm";
     }
 
 
