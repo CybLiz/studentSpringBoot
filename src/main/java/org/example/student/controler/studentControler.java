@@ -25,13 +25,6 @@ public class studentControler {
         return "Accueil";
     }
 
-    @RequestMapping("/inscription")
-    public String addStudent(Model model) {
-
-        model.addAttribute("student", new Student());
-        return "RegisterUserForm";
-    }
-
 
     @RequestMapping("/etudiants")
     public String getAll(Model model) {
@@ -47,8 +40,10 @@ public class studentControler {
         return "Etudiant";
     }
 
-    @RequestMapping("/form")
-    public String form(Model model) {
+    @RequestMapping("/inscription")
+
+    public String addStudent(Model model) {
+
         model.addAttribute("student", new Student());
         return "RegisterUserForm";
     }

@@ -12,6 +12,7 @@
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 crossorigin="anonymous"></script>
     </th:block>
+
 </head>
 <body>
 
@@ -36,13 +37,35 @@
 </th:block>
 <h2>Liste des étudiants</h2>
 
-<ul>
-    <li th:each="student : ${students}">
-        <a th:href="@{'/student/' + ${student.getId()}}">
-            <span th:text="${student.getFirstName()}+ ' ' + ${student.getLastName()}"></span>
-        </a>
-    </li>
-</ul>
+<!--<ul>-->
+<!--    <li th:each="student : ${students}">-->
+<!--        <a th:href="@{'/student/' + ${student.getId()}}">-->
+<!--            <span th:text="${student.getFirstName()}+ ' ' + ${student.getLastName()}"></span>-->
+<!--        </a>-->
+<!--    </li>-->
+<!--</ul>-->
+
+
+<div class="container">
+    <h1>Liste des étudiants</h1>
+    <table class="table" th:unless="${students.isEmpty()}">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Détails</th>
+        </tr>
+        </thead>
+        <tbody th:each="s : ${students}">
+        <td th:text="${s.getId()}"></td>
+        <td th:text="${s.getLastName()}"></td>
+        <td th:text="${s.getFirstName()}"></td>
+        <td><a th:href="@{/student/{id}(id=${s.getId()})}" class="btn btn-info">Détails</a></td>
+        </tbody>
+    </table>
+</div>
+
 
 </body>
 </html>

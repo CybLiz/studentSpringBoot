@@ -71,4 +71,10 @@ public class StudentService {
     public Student getStudentById(UUID id) {
         return students.get(id);
     }
+
+    public Student postStudent(Student student) {
+        students.put(student.getId(), student);
+        return student;
+
+    }
 }
