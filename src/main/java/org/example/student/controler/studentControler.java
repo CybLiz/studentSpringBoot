@@ -4,9 +4,7 @@ import org.example.student.model.Student;
 import org.springframework.ui.Model;
 import org.example.student.service.StudentService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -40,12 +38,18 @@ public class studentControler {
         return "Etudiant";
     }
 
-    @RequestMapping("/inscription")
 
-    public String addStudent(Model model) {
-
+    @GetMapping("/inscription")
+    public String inscription(Model model) {
         model.addAttribute("student", new Student());
         return "RegisterUserForm";
+    }
+
+
+    @PostMapping("/inscription")
+    public String addStudent(@ModelAttribute("Student") Student student) {
+        studentService.postStudent(student);
+        return "redirect:/etudiants";
     }
 
 

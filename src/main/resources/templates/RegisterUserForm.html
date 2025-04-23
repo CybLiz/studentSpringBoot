@@ -23,23 +23,24 @@
 <body>
 
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <h1>2i Academy</h1>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Accueil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/inscription}">Ajouter un étudiant</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/etudiants}">Liste des étudiant</a>
-            </li>
-        </ul>
-    </div>
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <h1>2i Academy</h1>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/inscription}">Ajouter un étudiant</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/etudiants}">Liste des étudiant</a>
+                </li>
+            </ul>
+        </div>
 
-</nav>
+    </nav>
 </th:block>
 <br /><br /><br />
 <div class="container">
@@ -48,16 +49,12 @@
             <div class="card-header">
                 <h2 class="text-center">Registration</h2>
             </div>
-            <div th:if="${param.success}">
-                <div class="alert alert-info">
-                    You have successfully registered our app!
-                </div>
-            </div>
+
             <div class="card-body">
                 <form
                         method="post"
                         role="form"
-                        th:action="@{/register/save}"
+                        th:action="@{/inscription}"
                         th:object="${student}"
                 >
                     <div class="form-group mb-3">
@@ -70,8 +67,7 @@
                                 th:field="*{firstName}"
                                 type="text"
                         />
-                        <p th:errors = "*{firstName}" class="text-danger"
-                           th:if="${#fields.hasErrors('firstName')}"></p>
+
                     </div>
 
                     <div class="form-group mb-3">
@@ -84,8 +80,7 @@
                                 th:field="*{lastName}"
                                 type="text"
                         />
-                        <p th:errors = "*{lastName}" class="text-danger"
-                           th:if="${#fields.hasErrors('lastName')}"></p>
+
                     </div>
 
                     <div class="form-group mb-3">
@@ -98,8 +93,7 @@
                             th:field="*{age}"
                             type="text"
                     />
-                        <p th:errors = "*{age}" class="text-danger"
-                           th:if="${#fields.hasErrors('age')}"></p>
+
                     </div>
 
                     <div class="form-group mb-3">
@@ -112,8 +106,7 @@
                                 th:field="*{email}"
                                 type="email"
                         />
-                        <p th:errors = "*{email}" class="text-danger"
-                           th:if="${#fields.hasErrors('email')}"></p>
+
                     </div>
 
 
